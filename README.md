@@ -5,4 +5,4 @@
 
 Pascal game JLX
 
-Witten in PASCAL language in 1995. 
+Witten in PASCAL language in 1994. 
