@@ -1,0 +1,34 @@
+O driver vga256.bgi Ç para abrir o modo grafico em VGA 320*200 256 cores
+(n∆o utilizado no JLX.PAS)
+
+como fazer no pascal:
+
+procedure abrir_modo_grafico;
+  var
+    GraphDriver,GraphMode,VGA256:integer;
+    regs:registers;
+  begin
+    VGA256:=InstallUserdriver('VGA256',nil);
+    GraphDriver:=VGA256;
+    InitGraph(GraphDriver,GraphMode,'\tp7\bgi');
+    regs.ah:=0;
+    regs.al:=$13;
+    intr($10,regs);
+  end;
+
+
+como fazer no C:
+
+void Initialize(void)
+{
+  int xasp, yasp,VGA256;
+  VGA256 = installuserdriver("VGA256",NULL);
+  GraphDriver = VGA256;                 
+  initgraph( &GraphDriver, &GraphMode, "" );
+  ErrorCode = graphresult();            
+  if( ErrorCode != grOk )
+  {                                     
+    printf(" Graphics System Error: %s\n", grapherrormsg( ErrorCode ) );
+    exit( 1 );
+  }
+}
